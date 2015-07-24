@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4F655A12-A6EF-4FFE-9E31-D9B217B7FA1E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MotelManage</RootNamespace>
+    <AssemblyName>MotelManage</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.WinForms.10.0.40219.1\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessLogicTier\BillSpendBLT.cs" />
+    <Compile Include="BusinessLogicTier\ContractBLT.cs" />
+    <Compile Include="BusinessLogicTier\DebtBLT.cs" />
+    <Compile Include="BusinessLogicTier\ReceiptsBLT.cs" />
+    <Compile Include="BusinessLogicTier\RoomBLT.cs" />
+    <Compile Include="BusinessLogicTier\RoomBookBLT.cs" />
+    <Compile Include="BusinessLogicTier\RoomStatusBLT.cs" />
+    <Compile Include="BusinessLogicTier\TollBillsBLT.cs" />
+    <Compile Include="BusinessLogicTier\ServiceNoteBLT.cs" />
+    <Compile Include="BusinessLogicTier\ServiceBLT.cs" />
+    <Compile Include="BusinessLogicTier\RoomTypeBLT.cs" />
+    <Compile Include="BusinessLogicTier\CustomerBLT.cs" />
+    <Compile Include="DataAccessTier\BillSpendDAT.cs" />
+    <Compile Include="DataAccessTier\ConnectionDB.cs" />
+    <Compile Include="DataAccessTier\ContractDAT.cs" />
+    <Compile Include="DataAccessTier\ContractDetailDAT.cs" />
+    <Compile Include="DataAccessTier\DebtDAT.cs" />
+    <Compile Include="DataAccessTier\ReceiptDAT.cs" />
+    <Compile Include="DataAccessTier\RoomBookDAT.cs" />
+    <Compile Include="DataAccessTier\RoomDAT.cs" />
+    <Compile Include="DataAccessTier\RoomStatusDAT.cs" />
+    <Compile Include="DataAccessTier\TollBillsDAT.cs" />
+    <Compile Include="DataAccessTier\ServiceNoteDAT.cs" />
+    <Compile Include="DataAccessTier\ServiceDAT.cs" />
+    <Compile Include="DataAccessTier\RoomTypeDAT.cs" />
+    <Compile Include="DataAccessTier\CustomerDAT.cs" />
+    <Compile Include="DataAccessTier\DataBases.cs" />
+    <Compile Include="DataAccessTier\DBConnection.cs" />
+    <Compile Include="DataTransferObject\BillSpend.cs" />
+    <Compile Include="DataTransferObject\Contract.cs" />
+    <Compile Include="DataTransferObject\ContractDetail.cs" />
+    <Compile Include="DataTransferObject\Customer.cs" />
+    <Compile Include="DataTransferObject\Debt.cs" />
+    <Compile Include="DataTransferObject\DetailBillToll.cs" />
+    <Compile Include="DataTransferObject\Receipts.cs" />
+    <Compile Include="DataTransferObject\ReportEvenue.cs" />
+    <Compile Include="DataTransferObject\ReportEvenueDetail.cs" />
+    <Compile Include="DataTransferObject\ReportRoom.cs" />
+    <Compile Include="DataTransferObject\ReportRoomDetail.cs" />
+    <Compile Include="DataTransferObject\Room.cs" />
+    <Compile Include="DataTransferObject\RoomBook.cs" />
+    <Compile Include="DataTransferObject\RoomStatus.cs" />
+    <Compile Include="DataTransferObject\RoomType.cs" />
+    <Compile Include="DataTransferObject\Service.cs" />
+    <Compile Include="DataTransferObject\ServiceNote.cs" />
+    <Compile Include="DataTransferObject\ServiceNoteDetail.cs" />
+    <Compile Include="DataTransferObject\TollBills.cs" />
+    <Compile Include="DB_MOTELDataSet11.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_MOTELDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DB_MOTELDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_MOTELDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\ContactList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\ContactList.Designer.cs">
+      <DependentUpon>ContactList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\ContactsEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\ContactsEdit.Designer.cs">
+      <DependentUpon>ContactsEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\CustomerAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\CustomerAdd.Designer.cs">
+      <DependentUpon>CustomerAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\CustomerEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\CustomerEdit.Designer.cs">
+      <DependentUpon>CustomerEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\CustomerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\CustomerList.Designer.cs">
+      <DependentUpon>CustomerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\DebtEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\DebtEdit.Designer.cs">
+      <DependentUpon>DebtEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\DebtList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\DebtList.Designer.cs">
+      <DependentUpon>DebtList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\ReceiptAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\ReceiptAdd.Designer.cs">
+      <DependentUpon>ReceiptAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\ReceiptEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\ReceiptEdit.Designer.cs">
+      <DependentUpon>ReceiptEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\ReceiptList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\ReceiptList.Designer.cs">
+      <DependentUpon>ReceiptList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\ReportEvenue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\ReportEvenue.Designer.cs">
+      <DependentUpon>ReportEvenue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\ReportRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\ReportRoom.Designer.cs">
+      <DependentUpon>ReportRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\RoomBookEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\RoomBookEdit.Designer.cs">
+      <DependentUpon>RoomBookEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\RoomBookList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\RoomBookList.Designer.cs">
+      <DependentUpon>RoomBookList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\RoomEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\RoomEdit.Designer.cs">
+      <DependentUpon>RoomEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\RoomList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\RoomList.Designer.cs">
+      <DependentUpon>RoomList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\RoomStatusEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\RoomStatusEdit.Designer.cs">
+      <DependentUpon>RoomStatusEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\RoomStatusList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\RoomStatusList.Designer.cs">
+      <DependentUpon>RoomStatusList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\ServiceEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\ServiceEdit.Designer.cs">
+      <DependentUpon>ServiceEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\RoomTypeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\RoomTypeEdit.Designer.cs">
+      <DependentUpon>RoomTypeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\ServiceNoteEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\ServiceNoteEdit.Designer.cs">
+      <DependentUpon>ServiceNoteEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\ServiceNoteList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\ServiceNoteList.Designer.cs">
+      <DependentUpon>ServiceNoteList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\ServiceList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\ServiceList.Designer.cs">
+      <DependentUpon>ServiceList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\RoomTypeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\RoomTypeList.Designer.cs">
+      <DependentUpon>RoomTypeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\SpendBillAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\SpendBillAdd.Designer.cs">
+      <DependentUpon>SpendBillAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\SpendBillEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\SpendBillEdit.Designer.cs">
+      <DependentUpon>SpendBillEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\SpendBillList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\SpendBillList.Designer.cs">
+      <DependentUpon>SpendBillList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\TollBillEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\TollBillEdit.Designer.cs">
+      <DependentUpon>TollBillEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\TollBillList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\TollBillList.Designer.cs">
+      <DependentUpon>TollBillList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportReceipts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportReceipts.Designer.cs">
+      <DependentUpon>ReportReceipts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportSpend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportSpend.Designer.cs">
+      <DependentUpon>ReportSpend.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\ContactList.resx">
+      <DependentUpon>ContactList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\ContactsEdit.resx">
+      <DependentUpon>ContactsEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\CustomerAdd.resx">
+      <DependentUpon>CustomerAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\CustomerEdit.resx">
+      <DependentUpon>CustomerEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\CustomerList.resx">
+      <DependentUpon>CustomerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\DebtEdit.resx">
+      <DependentUpon>DebtEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\DebtList.resx">
+      <DependentUpon>DebtList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\ReceiptAdd.resx">
+      <DependentUpon>ReceiptAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\ReceiptEdit.resx">
+      <DependentUpon>ReceiptEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\ReceiptList.resx">
+      <DependentUpon>ReceiptList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\ReportEvenue.resx">
+      <DependentUpon>ReportEvenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\ReportRoom.resx">
+      <DependentUpon>ReportRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\RoomBookEdit.resx">
+      <DependentUpon>RoomBookEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\RoomBookList.resx">
+      <DependentUpon>RoomBookList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\RoomEdit.resx">
+      <DependentUpon>RoomEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\RoomList.resx">
+      <DependentUpon>RoomList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\RoomStatusEdit.resx">
+      <DependentUpon>RoomStatusEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\RoomStatusList.resx">
+      <DependentUpon>RoomStatusList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\ServiceEdit.resx">
+      <DependentUpon>ServiceEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\RoomTypeEdit.resx">
+      <DependentUpon>RoomTypeEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\ServiceNoteEdit.resx">
+      <DependentUpon>ServiceNoteEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\ServiceNoteList.resx">
+      <DependentUpon>ServiceNoteList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\ServiceList.resx">
+      <DependentUpon>ServiceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\RoomTypeList.resx">
+      <DependentUpon>RoomTypeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\SpendBillAdd.resx">
+      <DependentUpon>SpendBillAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\SpendBillEdit.resx">
+      <DependentUpon>SpendBillEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\SpendBillList.resx">
+      <DependentUpon>SpendBillList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\TollBillEdit.resx">
+      <DependentUpon>TollBillEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\TollBillList.resx">
+      <DependentUpon>TollBillList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Reports\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Report1.rdlc" />
+    <EmbeddedResource Include="Reports\ReportReceipts.rdlc" />
+    <EmbeddedResource Include="Reports\ReportReceipts.resx">
+      <DependentUpon>ReportReceipts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportSpend.rdlc" />
+    <EmbeddedResource Include="Reports\ReportSpend.resx">
+      <DependentUpon>ReportSpend.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="DB_MOTELDataSet.xsc">
+      <DependentUpon>DB_MOTELDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DB_MOTELDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DB_MOTELDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DB_MOTELDataSet.xss">
+      <DependentUpon>DB_MOTELDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DB_MOTELDataSet1.xsc">
+      <DependentUpon>DB_MOTELDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DB_MOTELDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DB_MOTELDataSet11.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DB_MOTELDataSet1.xss">
+      <DependentUpon>DB_MOTELDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resource\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
