@@ -33,9 +33,9 @@ namespace MotelManage.PresentationTier
                
                 this.idDebt.Text = c.Id.ToString();
                 this.ctrID.Text = c.Contractid;
-                this.debt.Text = c.DebtUnitldate.ToString();
-                this.date.Value = c.DateSet;
-                this.note.Text = c.Node;
+                this.debt.Text = c.DebtUntildate.ToString();
+                this.date.Value = DateTime.Parse(c.DateSet);
+                this.note.Text = c.Note;
             }
         }
 
@@ -49,9 +49,9 @@ namespace MotelManage.PresentationTier
             }
             else 
             {
-                 this.objectDebt.DateSet = this.date.Value;
-                this.objectDebt.Node = this.note.Text;
-                this.objectDebt.DebtUnitldate = decimal.Parse(this.debt.Text.ToString());
+                 this.objectDebt.DateSet = this.date.Text;
+                this.objectDebt.Note = this.note.Text;
+                this.objectDebt.DebtUntildate = decimal.Parse(this.debt.Text.ToString());
                 
                 bool flagUpdate = this.debtBLT.updateDebt(objectDebt);
                 if (flagUpdate == true)

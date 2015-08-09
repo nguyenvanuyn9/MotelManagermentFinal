@@ -16,11 +16,29 @@ namespace MotelManage.DataAccessTier
             //this.Service = new ServiceDAT();
         }
 
-        public DataTable getListData()
+        public DataTable getListService()
         {
             try
             {
                 string sql = "select * from Service";
+                return this.LoadDataTable(sql);
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+            return null;
+        }
+
+        public DataTable getListServiceWithContractDetail(string contractId)
+        {
+            try
+            {
+                string sql = "SELECT CTRD.ID AS CONTRACTDETAILID, SVC.ID AS SERVICEID, SVC.NAME, SVC.UNIT, SVC.PRICE, DBO.CHECK_CONTRACTDETAILID(CTRD.ID) AS ISVALID "
+                                + "FROM SERVICE SVC "
+                                + "LEFT JOIN ( SELECT * FROM CONTRACTDETAIL WHERE CONTRACTID = '" + contractId + "') CTRD "
+                                + "ON CTRD.SERVICEID = SVC.ID";
+
                 return this.LoadDataTable(sql);
             }
             catch (System.Exception ex)

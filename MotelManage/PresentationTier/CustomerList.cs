@@ -37,8 +37,8 @@ namespace MotelManage.PresentationTier
                 c.Id = dataCustomerList.Rows[0].Cells[0].Value.ToString();
                 c.Name = dataCustomerList.Rows[0].Cells[1].Value.ToString();
                 c.Cmnd = dataCustomerList.Rows[0].Cells[2].Value.ToString();
-                c.Phonenumber = int.Parse(dataCustomerList.Rows[0].Cells[3].Value.ToString());
-                c.Adress = dataCustomerList.Rows[0].Cells[4].Value.ToString();
+                c.Phonenumber = dataCustomerList.Rows[0].Cells[3].Value.ToString();
+                c.Address = dataCustomerList.Rows[0].Cells[4].Value.ToString();
                 c.Commit = bool.Parse(dataCustomerList.Rows[0].Cells[5].Value.ToString());
             }
    
@@ -65,8 +65,8 @@ namespace MotelManage.PresentationTier
                     c.Id = dataCustomerList.Rows[Index].Cells[0].Value.ToString();
                     c.Name = dataCustomerList.Rows[Index].Cells[1].Value.ToString();
                     c.Cmnd = dataCustomerList.Rows[Index].Cells[2].Value.ToString();
-                    c.Phonenumber = int.Parse(dataCustomerList.Rows[Index].Cells[3].Value.ToString());
-                    c.Adress = dataCustomerList.Rows[Index].Cells[4].Value.ToString();
+                    c.Phonenumber = dataCustomerList.Rows[Index].Cells[3].Value.ToString();
+                    c.Address = dataCustomerList.Rows[Index].Cells[4].Value.ToString();
                     c.Commit = bool.Parse(dataCustomerList.Rows[Index].Cells[5].Value.ToString());
                     mKH = textId;
 

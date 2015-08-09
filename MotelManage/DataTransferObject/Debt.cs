@@ -23,23 +23,23 @@ namespace MotelManage.DataTransferObject
             get { return contractid; }
             set { contractid = value; }
         }
-        DateTime dateSet;
+        string dateSet;
 
-        public DateTime DateSet
+        public string DateSet
         {
             get { return dateSet; }
             set { dateSet = value; }
         }
-        decimal debtUnitldate;
-        public decimal DebtUnitldate
+        decimal debtUntildate;
+        public decimal DebtUntildate
         {
-            get { return debtUnitldate; }
-            set { debtUnitldate = value; }
+            get { return debtUntildate; }
+            set { debtUntildate = value; }
         }
 
         String note;
 
-        public String Node
+        public String Note
         {
             get { return note; }
             set { note = value; }

@@ -22,6 +22,7 @@ namespace MotelManage.BusinessLogicTier
         {
             return tollBillsDAT.getComboTollBillData(str);
         }
+
         public decimal getTotalByTollBillId(string str)
         {
             return tollBillsDAT.getTotalByTollBillId(str);
@@ -59,9 +60,9 @@ namespace MotelManage.BusinessLogicTier
             return tollBillsDAT.updateTollBill(rt);
         }
 
-        public DataTable searchTollBill(TollBills rt)
+        public DataTable searchTollBill(TollBills rt, string contractId, string roomName, string dateNoteService, decimal roomPrice, decimal serviceTotalMoney, decimal debt, decimal total)
         {
-            return tollBillsDAT.searchTollBill(rt);
+            return tollBillsDAT.searchTollBill(rt, contractId, roomName, dateNoteService, roomPrice, serviceTotalMoney, debt, total);
         }
     }
 }

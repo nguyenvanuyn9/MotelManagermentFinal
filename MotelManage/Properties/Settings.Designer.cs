@@ -35,5 +35,16 @@ namespace MotelManage.Properties {
                 this["DB_MOTELConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=NGUYENVANUY\\SQLEXPRESS;Initial Catalog=DB_MOTEL;Integrated Security=T" +
+            "rue")]
+        public string DB_MOTELConnectionString1 {
+            get {
+                return ((string)(this["DB_MOTELConnectionString1"]));
+            }
+        }
     }
 }

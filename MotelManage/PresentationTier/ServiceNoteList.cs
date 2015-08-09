@@ -49,7 +49,7 @@ namespace MotelManage.PresentationTier
         private void DgvServiceNote_SelectionChanged(object sender, EventArgs e)
         {
             DataGridViewRow row = (sender as DataGridView).CurrentRow;
-            if (serviceNoteIdPrevFocus != row.Cells["clID"].Value.ToString())
+            if (row != null && serviceNoteIdPrevFocus != row.Cells["clID"].Value.ToString())
             {
                 serviceNoteIdPrevFocus = txtId.Text = row.Cells["clID"].Value.ToString();
                 dateTimePickerDate.Text = DateTime.Parse(row.Cells["clDate"].Value.ToString()) > dateTimePickerDate.MaxDate? dateTimePickerDate.MaxDate.ToString(): row.Cells["clDate"].Value.ToString();
@@ -78,7 +78,7 @@ namespace MotelManage.PresentationTier
                     Total= decimal.Parse(txtTotalMoney.Text.Trim() == "" ? "0" : txtTotalMoney.Text.Trim())
                 };
 
-                this.dgvServiceNote.DataSource = serviceNoteBLT.searchServiceNote(svcn, (cmbRoomName.SelectedValue == null) ? "" : cmbRoomName.SelectedValue.ToString());
+                this.dgvServiceNote.DataSource = serviceNoteBLT.searchServiceNote(svcn, (cmbRoomName.SelectedIndex < 0) ? "" : cmbRoomName.SelectedValue.ToString());
             }
         }
 
@@ -209,8 +209,8 @@ namespace MotelManage.PresentationTier
             {
                 Servicenoteid = servicenoteid
             };
-            var result = tollBillsBLT.searchTollBill(temp);
-            if (result != null)
+            DataTable result = tollBillsBLT.searchTollBill(temp, "", "", "", 0,0,0,0);
+            if (result != null && result.Rows.Count > 0)
             {
                 this.btnEdit.Text = "View detail";
                 this.btnDelete.Enabled = false;

@@ -8,55 +8,55 @@ namespace MotelManage.DataTransferObject
 {
     public class Customer
     {
-        String id;
-        Boolean flagCommit;
-        public String Id
+        string id;
+        bool flagCommit;
+        public string Id
         {
             get { return id; }
             set { id = value; }
         }
 
-        public Boolean Commit
+        public bool Commit
         {
             get { return flagCommit; }
             set { flagCommit = value; }
         }
 
-        String name;
+        string name;
 
-        public String Name
+        public string Name
         {
             get { return name; }
             set { name = value; }
         }
-        String cmnd;
+        string cmnd;
 
-        public String Cmnd
+        public string Cmnd
         {
             get { return cmnd; }
             set { cmnd = value; }
         }
-        int phonenumber;
+        string phonenumber;
 
-        public int Phonenumber
+        public string Phonenumber
         {
             get { return phonenumber; }
             set { phonenumber = value; }
         }
-        String adress;
+        string address;
 
-        public String Adress
+        public string Address
         {
-            get { return adress; }
-            set { adress = value; }
+            get { return address; }
+            set { address = value; }
         }
 
         public void reset()
         {
-            adress = "";
+            address = "";
             name = "";
             id = "";
-            phonenumber = 0;
+            phonenumber = "";
             cmnd = "";
 
         }

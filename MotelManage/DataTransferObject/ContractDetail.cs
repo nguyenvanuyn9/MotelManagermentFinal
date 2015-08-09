@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MotelManage.DataTransferObject
 {
-    class ContractDetail
+    public class ContractDetail
     {
         String id;
 

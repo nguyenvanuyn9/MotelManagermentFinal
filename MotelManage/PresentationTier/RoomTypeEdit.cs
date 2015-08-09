@@ -19,6 +19,7 @@ namespace MotelManage.PresentationTier
         public EditCompleteDelegate EditCompletedHandler;
 
         private RoomTypeBLT roomTypeBLT;
+
         public RoomTypeEdit(RoomType roomType)
         {
             InitializeComponent();

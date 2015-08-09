@@ -25,13 +25,11 @@ namespace MotelManage.BusinessLogicTier
             return table;
         }
 
-        public DataTable searchRoomBook(RoomBook roomBook)
+        public DataTable searchRoomBook(RoomBook roomBook, string customerName="")
         {
-
             try
-            {
-                
-                DataTable table = roomBookDAT.SearchRoomBook(roomBook);
+            {                
+                DataTable table = roomBookDAT.SearchRoomBook(roomBook, customerName);
 
                 return table;
             }

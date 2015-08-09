@@ -15,9 +15,9 @@ namespace MotelManage.DataTransferObject
             get { return id; }
             set { id = value; }
         }
-        DateTime dateestablish;
+        string dateestablish;
 
-        public DateTime Dateestablish
+        public string Dateestablish
         {
             get { return dateestablish; }
             set { dateestablish = value; }

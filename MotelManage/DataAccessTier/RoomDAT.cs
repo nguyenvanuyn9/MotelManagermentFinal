@@ -22,7 +22,7 @@ namespace MotelManage.DataAccessTier
         {
             try
             {
-                string sql = "select RM.ID, RM.NAME, RM.STATUSID, RMS.NAME AS STATUSNAME, RM.ROOMTYPEID, RMT.NAME AS ROOMTYPENAME " +
+                string sql = "select RM.ID, RM.NAME, RM.STATUSID, RMS.NAME AS STATUSNAME, RM.ROOMTYPEID, RMT.NAME AS ROOMTYPENAME, RMT.PRICE, RMT.DEPOSIT, RMT.NOTE " +
                              "from ROOM RM " +
                              "LEFT JOIN ROOMSTATUS RMS " +
                              "ON RM.STATUSID = RMS.ID " +
@@ -204,7 +204,7 @@ namespace MotelManage.DataAccessTier
             return null;
         }
 
-        public DataTable SearchRoom(Room room)
+        public DataTable searchRoom(Room room)
         {
             try
             {

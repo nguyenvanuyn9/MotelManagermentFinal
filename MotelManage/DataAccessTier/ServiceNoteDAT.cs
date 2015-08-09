@@ -50,6 +50,29 @@ namespace MotelManage.DataAccessTier
             return null;
 
         }
+        /// <summary>
+        /// Lấy ghi chú dịch (của tháng) trước đó của một contractId.
+        /// </summary>
+        /// <param name="currentServiceNoteId"></param>
+        /// <returns></returns>
+        public DataTable getServiceNotePrev(string currentServiceNoteId)
+        {
+            try
+            {
+                string sql = "select top 1 * "
+                           + "from servicenote "
+                           + "where contractid = (select top 1 contractid from servicenote where id = '" + currentServiceNoteId + "') and date < (select top 1 date from servicenote where id = '" + currentServiceNoteId  + "') " 
+                           + "order by date desc";
+                return this.LoadDataTable(sql);
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+            return null;
+
+        }
+
         public DataTable getListServiceNoteDetailById(string id)
         {
             try

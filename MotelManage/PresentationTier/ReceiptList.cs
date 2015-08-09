@@ -43,7 +43,7 @@ namespace MotelManage.PresentationTier
                 if (rowindex > -1)
                 {
                     r.Id = dataReceiptList.Rows[rowindex].Cells[0].Value.ToString();
-                    r.Dateestablish = DateTime.Parse(dataReceiptList.Rows[rowindex].Cells[1].Value.ToString());
+                    r.Dateestablish = dataReceiptList.Rows[rowindex].Cells[1].Value.ToString();
                     r.Reason = dataReceiptList.Rows[rowindex].Cells[2].Value.ToString();
                     r.Total = Decimal.Parse(dataReceiptList.Rows[rowindex].Cells[3].Value.ToString());
                     r.Contractid = dataReceiptList.Rows[rowindex].Cells[4].Value.ToString();
@@ -67,7 +67,7 @@ namespace MotelManage.PresentationTier
                 this.billID.Text = dataReceiptList.Rows[index].Cells[5].Value.ToString();
                 this.dateValue.Value = DateTime.Parse(dataReceiptList.Rows[index].Cells[1].Value.ToString());
                 r.Id = dataReceiptList.Rows[index].Cells[0].Value.ToString();
-                r.Dateestablish = DateTime.Parse(dataReceiptList.Rows[index].Cells[1].Value.ToString());
+                r.Dateestablish = dataReceiptList.Rows[index].Cells[1].Value.ToString();
                 r.Reason = dataReceiptList.Rows[index].Cells[2].Value.ToString();
                 r.Total = Decimal.Parse(dataReceiptList.Rows[index].Cells[3].Value.ToString());
                 r.Contractid = dataReceiptList.Rows[index].Cells[4].Value.ToString();

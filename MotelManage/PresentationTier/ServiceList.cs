@@ -45,7 +45,7 @@ namespace MotelManage.PresentationTier
         private void DgvService_SelectionChanged(object sender, EventArgs e)
         {
             DataGridViewRow row = (sender as DataGridView).CurrentRow;
-            if (serviceIdPrevFocus != row.Cells["clID"].Value.ToString())
+            if (row != null && serviceIdPrevFocus != row.Cells["clID"].Value.ToString())
             {
                 serviceIdPrevFocus = txtId.Text = row.Cells["clID"].Value.ToString();
                 txtName.Text = row.Cells["clName"].Value.ToString();

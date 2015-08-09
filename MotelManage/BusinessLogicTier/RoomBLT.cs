@@ -71,10 +71,9 @@ namespace MotelManage.BusinessLogicTier
 
         public DataTable searchRoom(Room room)
         {
-
             try
             {
-                return roomDAT.SearchRoom(room);
+                return roomDAT.searchRoom(room);
             }
             catch (System.Exception ex)
             {

@@ -52,7 +52,7 @@ namespace MotelManage.PresentationTier
         private void DgvRoomType_SelectionChanged(object sender, EventArgs e)
         {
             DataGridViewRow row = (sender as DataGridView).CurrentRow;
-            if(roomTypeIdPrevFocus != row.Cells["clID"].Value.ToString())
+            if(row != null && roomTypeIdPrevFocus != row.Cells["clID"].Value.ToString())
             {
                 roomTypeIdPrevFocus = txtId.Text = row.Cells["clID"].Value.ToString();
                 txtName.Text = row.Cells["clName"].Value.ToString();

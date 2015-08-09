@@ -14,6 +14,10 @@ namespace MotelManage.PresentationTier
 {
     public partial class CustomerEdit : Form
     {
+        public delegate void EditCompleteDelegate(string customerId, string customerName);
+
+        public EditCompleteDelegate EditCompletedHandler;
+
         protected Customer objCustomer = new Customer();
         protected CustomerBLT customerBLTEdit = new CustomerBLT();
         public CustomerEdit()
@@ -32,7 +36,7 @@ namespace MotelManage.PresentationTier
                 this.nameCustomerEdit.Text = c.Name;
                 this.cmndCustomerEdit.Text = c.Cmnd;
                 this.phoneCustomerEdit.Text = c.Phonenumber.ToString();
-                this.addressCustomerEdit.Text = c.Adress;
+                this.addressCustomerEdit.Text = c.Address;
                 this.submitCus.Checked = c.Commit;
             }
         }
@@ -47,13 +51,15 @@ namespace MotelManage.PresentationTier
             {
                 this.objCustomer.Name = this.nameCustomerEdit.Text;
                 this.objCustomer.Cmnd = this.cmndCustomerEdit.Text;
-                this.objCustomer.Phonenumber = int.Parse(this.phoneCustomerEdit.Text.ToString());
-                this.objCustomer.Adress = this.addressCustomerEdit.Text;
+                this.objCustomer.Phonenumber = this.phoneCustomerEdit.Text;
+                this.objCustomer.Address = this.addressCustomerEdit.Text;
                 this.objCustomer.Commit = this.submitCus.Checked;
                 bool flagUpdate = this.customerBLTEdit.updateCustomer(objCustomer);
                 if (flagUpdate == true)
                 {
                     MessageBox.Show("Update Success");
+                    EditCompletedHandler(idCustomerEdit.Text, nameCustomerEdit.Text);
+                    this.Close();
                 }
                 else {
                     MessageBox.Show("Update Fail Try Again !");

@@ -23,9 +23,16 @@ namespace MotelManage.BusinessLogicTier
             return customerDAT.getListData();
         }
 
-        public bool addCustomer(Customer c)
+        public bool addCustomer(Customer c, out string customerId)
         {
-            return customerDAT.addCustomer(c);
+            var result = customerDAT.addCustomer(c);
+            if (result.Rows[0].ItemArray[0].ToString() == "0")
+            {
+                customerId = result.Rows[0].ItemArray[1].ToString();
+                return true;
+            }
+            customerId = "";
+            return false;
         }
 
         public bool deleteCustomer(String id)

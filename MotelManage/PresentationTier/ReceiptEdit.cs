@@ -37,7 +37,7 @@ namespace MotelManage.PresentationTier
                 this.reason.Text = this.objectReceipt.Reason;
                 this.contractId.Text = this.objectReceipt.Contractid;
                 this.customer.Text = this.objectReceipt.Customername;
-                this.date.Text = this.objectReceipt.Dateestablish.ToShortDateString();
+                this.date.Text = this.objectReceipt.Dateestablish;
                 this.note.Text = this.objectReceipt.Contents;
                 this.total.Text = this.objectReceipt.Total.ToString();
                 this.billID.Text = this.objectReceipt.Billid.ToString();
@@ -88,7 +88,7 @@ namespace MotelManage.PresentationTier
           rp.Name = "id";
           rp.Values.Add(objectReceipt.Id);
           ReportParameter rp1 = new ReportParameter("contractid", objectReceipt.Contractid, true);
-          ReportParameter rp2 = new ReportParameter("dateestablish", this.objectReceipt.Dateestablish.ToShortDateString(), true);
+          ReportParameter rp2 = new ReportParameter("dateestablish", this.objectReceipt.Dateestablish, true);
           ReportParameter rp3 = new ReportParameter("billid", this.objectReceipt.Billid, true);
           ReportParameter rp4 = new ReportParameter("customername", this.objectReceipt.Customername, true);
           ReportParameter rp5 = new ReportParameter("total", this.objectReceipt.Total.ToString(), true);

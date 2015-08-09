@@ -20,7 +20,12 @@ namespace MotelManage.BusinessLogicTier
 
         public DataTable getListService()
         {
-            return serviceDAT.getListData();
+            return serviceDAT.getListService();
+        }
+
+        public DataTable getListServiceWithContractDetail(string contractId)
+        {
+            return serviceDAT.getListServiceWithContractDetail(contractId);
         }
 
         public DataTable getListServiceById(string id)

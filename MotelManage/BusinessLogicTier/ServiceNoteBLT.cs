@@ -34,6 +34,11 @@ namespace MotelManage.BusinessLogicTier
             return serviceNoteDAT.getListServiceNoteById(id);
         }
 
+        public DataTable getServiceNotePrev(string currentServiceNoteId)
+        {
+            return serviceNoteDAT.getServiceNotePrev(currentServiceNoteId);
+        }
+
         public bool addServiceNote(ServiceNote rt, XElement xml, out string ServiceNoteId)
         {
             var result = serviceNoteDAT.addServiceNote(rt, xml);

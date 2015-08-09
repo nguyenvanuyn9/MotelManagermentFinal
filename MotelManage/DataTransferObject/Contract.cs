@@ -36,13 +36,13 @@ namespace MotelManage.DataTransferObject
             get { return setdate; }
             set { setdate = value; }
         }
-        String nameEstablish;
+        //String nameEstablish;
 
-        public String NameEstablish
-        {
-            get { return nameEstablish; }
-            set { nameEstablish = value; }
-        }
+        //public String NameEstablish
+        //{
+        //    get { return nameEstablish; }
+        //    set { nameEstablish = value; }
+        //}
         String roomid;
 
         public String Roomid
@@ -110,5 +110,37 @@ namespace MotelManage.DataTransferObject
 
         decimal deposit;
 
+    }
+
+    public class ContractStatus
+    {
+        bool value;
+        string display;
+
+        public bool Value
+        {
+            get
+            {
+                return value;
+            }
+
+            set
+            {
+                this.value = value;
+            }
+        }
+
+        public string Display
+        {
+            get
+            {
+                return display;
+            }
+
+            set
+            {
+                display = value;
+            }
+        }
     }
 }

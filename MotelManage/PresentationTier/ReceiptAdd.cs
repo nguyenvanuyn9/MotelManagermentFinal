@@ -23,6 +23,21 @@ namespace MotelManage.PresentationTier
             InitializeComponent();
         }
 
+        public ReceiptAdd(string contractId, string customerName, string billId, string totalPay, string note)
+        {
+            InitializeComponent();
+
+            this.contractCombo.Text = contractId;
+            this.dateReceipt.Value = DateTime.Now;
+            this.customerName.Text = customerName;
+            this.billCombo.Text = billId;
+            this.total.Text = totalPay;
+            this.note.Text = note;
+
+            this.contractCombo.Enabled = false;
+            this.customerName.ReadOnly = true;                        
+        }
+
         private void ReceiptAdd_Loaded(object sender, EventArgs e)
         {
             DataSet dtContract = contractBLT.getComboContractData();
@@ -65,7 +80,7 @@ namespace MotelManage.PresentationTier
             decimal d = 0;
             if ((!valueContract.Contains("No Choice")) && (this.customerName.Text != "") && (decimal.TryParse(total.Text, out d)))
             {
-                r.Dateestablish = this.dateReceipt.Value;
+                r.Dateestablish = this.dateReceipt.Text;
                 r.Reason = this.reason.Text;
                 r.Customername = this.customerName.Text;
                 r.Billid = "" ;

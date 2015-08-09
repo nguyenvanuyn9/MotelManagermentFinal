@@ -73,8 +73,7 @@ namespace MotelManage.DataAccessTier
 
             return false;
         }
-
-
+        
         public bool deleteRoomBook(String id)
         {
             try
@@ -124,22 +123,22 @@ namespace MotelManage.DataAccessTier
             return false;
         }
 
-        public DataTable SearchRoomBook(RoomBook roomBook)
+        public DataTable SearchRoomBook(RoomBook roomBook, string customerName="")
         {
             try
             {
-                SqlParameter[] para = new SqlParameter[8];
+                SqlParameter[] para = new SqlParameter[10];
 
                 para[0] = new SqlParameter("@p_id", roomBook.Id);
                 para[1] = new SqlParameter("@p_begindate", roomBook.Begindate);
                 para[2] = new SqlParameter("@p_enddate", roomBook.Enddate);
                 para[3] = new SqlParameter("@p_roomid", roomBook.Roomid);
                 para[4] = new SqlParameter("@p_customerid", roomBook.Customerid);
-
                 para[5] = new SqlParameter("@p_roombookStatusId", roomBook.RoomBookStatusid);
-
                 para[6] = new SqlParameter("@p_note", roomBook.Note);
                 para[7] = new SqlParameter("@p_deposit", roomBook.Deposit);
+                para[8] = new SqlParameter("@p_customerName", customerName);
+                para[9] = new SqlParameter("@p_top", 0);
 
                 DataTable lstRoomBook = LoadDataTableStoreProcedure("RoomBook_Search", para);
                 return lstRoomBook;

@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace MotelManage.DataAccessTier
 {
@@ -28,7 +29,8 @@ namespace MotelManage.DataAccessTier
             }
             return null;
         }
-        public DataTable searchContract(Contract ctr)
+
+        public DataTable addContract(Contract ctr, XElement xml)
         {
             try
             {
@@ -44,10 +46,111 @@ namespace MotelManage.DataAccessTier
                 names[6] = "@p_NOTE"; values[6] = ctr.Note;
                 names[7] = "@p_PRICEROOM"; values[7] = ctr.PriceRoom;
                 names[8] = "@p_DEPOSIT"; values[8] = ctr.Deposit;
+                names[9] = "@p_ISVALID"; values[9] = (ctr.IsValid == true) ? 1 : 0;
+                names[10] = "@p_XML_DATA"; values[10] = xml.ToString();
+
+                return this.ExcuteStoreProcedure("CONTRACT_Ins", names, values);
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+
+            return null;
+        }
+
+        public DataTable deleteContract(String id)
+        {
+            try
+            {
+                string[] names = new string[1];
+                object[] values = new object[1];
+
+                names[0] = "@p_ID"; values[0] = id;
+
+                return this.ExcuteStoreProcedure("CONTRACT_Del", names, values);
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+
+            return null;
+        }
+
+        public DataTable updateContract(Contract ctr, XElement xml)
+        {
+            try
+            {
+                string[] names = new string[11];
+                object[] values = new object[11];
+
+                names[0] = "@p_ID"; values[0] = ctr.Id;
+                names[1] = "@p_BEGINDATE"; values[1] = ctr.Begindate;
+                names[2] = "@p_ENDDATE"; values[2] = ctr.Enddate;
+                names[3] = "@p_SETDATE"; values[3] = ctr.Setdate;
+                names[4] = "@p_ROOMID"; values[4] = ctr.Roomid;
+                names[5] = "@p_CUSTOMERID"; values[5] = ctr.Customerid;
+                names[6] = "@p_NOTE"; values[6] = ctr.Note;
+                names[7] = "@p_PRICEROOM"; values[7] = ctr.PriceRoom;
+                names[8] = "@p_DEPOSIT"; values[8] = ctr.Deposit;
+                names[9] = "@p_ISVALID"; values[9] = (ctr.IsValid == true) ? 1 : 0;
+                names[10] = "@p_XML_DATA"; values[10] = xml.ToString();
+
+                return this.ExcuteStoreProcedure("CONTRACT_Upd", names, values);
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+
+            return null;
+        }
+
+        public DataTable searchContract(Contract ctr, string roomName, string customerName)
+        {
+            try
+            {
+                string[] names = new string[13];
+                object[] values = new object[13];
+
+                names[0] = "@p_ID"; values[0] = ctr.Id;
+                names[1] = "@p_BEGINDATE"; values[1] = ctr.Begindate;
+                names[2] = "@p_ENDDATE"; values[2] = ctr.Enddate;
+                names[3] = "@p_SETDATE"; values[3] = ctr.Setdate;
+                names[4] = "@p_ROOMID"; values[4] = ctr.Roomid;
+                names[5] = "@p_CUSTOMERID"; values[5] = ctr.Customerid;
+                names[6] = "@p_NOTE"; values[6] = ctr.Note;
+                names[7] = "@p_PRICEROOM"; values[7] = ctr.PriceRoom;
+                names[8] = "@p_DEPOSIT"; values[8] = ctr.Deposit;
                 names[9] = "@p_ISVALID"; values[9] = (ctr.IsValid==true)?1:0;
-                names[10] = "@p_TOP"; values[10] = 0;
+                names[10] = "@p_ROOMNAME"; values[10] = roomName;
+                names[11] = "@p_CUSTOMERNAME"; values[11] = customerName;
+                names[12] = "@p_TOP"; values[12] = 0;
 
                 return this.ExcuteStoreProcedure("CONTRACT_Search", names, values);
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+
+            return null;
+        }
+        
+        public DataTable searchContractDetail(ContractDetail ctrd)
+        {
+            try
+            {
+                string[] names = new string[4];
+                object[] values = new object[4];
+
+                names[0] = "@p_ID"; values[0] = ctrd.Id;
+                names[1] = "@p_CONTRACTID"; values[1] = ctrd.Contractid;
+                names[2] = "@p_SERVICEID"; values[2] = ctrd.Serviceid;
+                names[3] = "@p_TOP"; values[3] = 0;
+
+                return this.ExcuteStoreProcedure("CONTRACTDETAIL_Search", names, values);
             }
             catch (System.Exception ex)
             {
@@ -61,8 +164,8 @@ namespace MotelManage.DataAccessTier
         {
             try
             {
-                string sql = "select CTRD.ID, CTRD.CONTRACTID, CTRD.SERVICEID, SER.NAME AS SERVICENAME, SER.UNIT, SER.PRICE " +
-                             "from CONTRACTDETAIL CTRD " +
+                string sql = "SELECT CTRD.ID, CTRD.CONTRACTID, CTRD.SERVICEID, SER.NAME AS SERVICENAME, SER.UNIT, SER.PRICE " +
+                             "FROM CONTRACTDETAIL CTRD " +
                              "LEFT JOIN SERVICE SER " +
                              "ON CTRD.SERVICEID = SER.ID " +
                              "WHERE CTRD.CONTRACTID='" + contractId + "'";
@@ -74,6 +177,8 @@ namespace MotelManage.DataAccessTier
             }
             return null;
         }
+
+
         public DataSet getComboContractData()
         {
             try

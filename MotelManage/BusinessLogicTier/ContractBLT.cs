@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace MotelManage.BusinessLogicTier
 {
@@ -20,11 +21,6 @@ namespace MotelManage.BusinessLogicTier
         public DataTable getListContract()
         {
             return contractDAT.getListContract();
-        }
-
-        public DataTable searchContract(Contract ctr)
-        {
-            return contractDAT.searchContract(ctr);
         }
 
         public DataTable getListContractDetail(string contractid)
@@ -68,6 +64,49 @@ namespace MotelManage.BusinessLogicTier
         public bool isValid(string contractID)
         {
             return contractDAT.isValue(contractID);
+        }
+
+
+        public bool addContract(Contract ctr, XElement xml, out string ContractId)
+        {
+            var result = contractDAT.addContract(ctr, xml);
+            if (result.Rows[0].ItemArray[0].ToString() == "0")
+            {
+                ContractId = result.Rows[0].ItemArray[1].ToString();
+                return true;
+            }
+            ContractId = "";
+            return false;
+        }
+
+        public bool deleteContract(String id)
+        {
+            var result = contractDAT.deleteContract(id);
+            if (result.Rows[0].ItemArray[0].ToString() == "0")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool updateContract(Contract ctr, XElement xml)
+        {
+            var result = contractDAT.updateContract(ctr, xml);
+            if (result.Rows[0].ItemArray[0].ToString() == "0")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public DataTable searchContract(Contract ctr, string roomName = "", string customerName = "")
+        {
+            return contractDAT.searchContract(ctr, roomName, customerName);
+        }
+
+        public DataTable searchContractDetail(ContractDetail ctrd)
+        {
+            return contractDAT.searchContractDetail(ctrd);
         }
     }
 }

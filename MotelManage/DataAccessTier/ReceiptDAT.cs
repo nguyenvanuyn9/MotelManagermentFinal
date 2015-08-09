@@ -96,8 +96,7 @@ namespace MotelManage.DataAccessTier
             }
             return null;
         }
-
-
+        
         public DataTable getListReceipts()
         {
             try
@@ -109,6 +108,33 @@ namespace MotelManage.DataAccessTier
             {
                 Console.WriteLine("Message = {1}", ex.Message);
             }
+            return null;
+        }
+        
+        public DataTable searchReceipts(Receipts rpt)
+        {
+            try
+            {
+                string[] names = new string[9];
+                object[] values = new object[9];
+
+                names[0] = "@p_ID"; values[0] = rpt.Id;
+                names[1] = "@p_DATEESTABLISH"; values[1] = rpt.Dateestablish;
+                names[2] = "@p_REASON"; values[2] = rpt.Reason;
+                names[3] = "@p_TOTAL"; values[3] = rpt.Total;
+                names[4] = "@p_CONTRACTID"; values[4] = rpt.Contractid;
+                names[5] = "@p_BILLID"; values[5] = rpt.Billid;
+                names[6] = "@p_CUSTOMERNAME"; values[6] = rpt.Customername;
+                names[7] = "@p_CONTENTS"; values[7] = rpt.Contents;
+                names[8] = "@p_TOP"; values[8] = 0;
+
+                return this.ExcuteStoreProcedure("RECEIPTS_Search", names, values);
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+
             return null;
         }
 

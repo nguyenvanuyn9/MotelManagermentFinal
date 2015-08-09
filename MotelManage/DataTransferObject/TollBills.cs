@@ -15,13 +15,13 @@ namespace MotelManage.DataTransferObject
             get { return id; }
             set { id = value; }
         }
-        String contractid;
+        //String contractid;
 
-        public String Contractid
-        {
-            get { return contractid; }
-            set { contractid = value; }
-        }
+        //public String Contractid
+        //{
+        //    get { return contractid; }
+        //    set { contractid = value; }
+        //}
         String servicenoteid;
 
         public String Servicenoteid
@@ -49,6 +49,13 @@ namespace MotelManage.DataTransferObject
         {
             get { return discountMoney; }
             set { discountMoney = value; }
+        }
+        decimal debtUntilDate;
+
+        public decimal DebtUntilDate
+        {
+            get { return debtUntilDate; }
+            set { debtUntilDate = value; }
         }
         String note;
 

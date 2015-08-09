@@ -37,5 +37,10 @@ namespace MotelManage.BusinessLogicTier
         {
             return receiptDAT.updateReceipts(c);
         }
+
+        public DataTable searchReceipts(Receipts rpt)
+        {
+            return receiptDAT.searchReceipts(rpt);
+        }
     }
 }

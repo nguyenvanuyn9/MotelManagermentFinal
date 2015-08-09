@@ -12,6 +12,8 @@ namespace MotelManage.PresentationTier
     {
         private ServiceNoteBLT serviceNoteBLT;
         private ContractBLT contractBLT;
+        private TollBillsBLT tollBillsBLT;
+        private DebtBLT debtBLT;
 
         public delegate void EditCompleteDelegate(String serviceNoteId);
 
@@ -65,6 +67,8 @@ namespace MotelManage.PresentationTier
 
             serviceNoteBLT = new ServiceNoteBLT();
             contractBLT = new ContractBLT();
+            tollBillsBLT = new TollBillsBLT();
+            debtBLT = new DebtBLT();
 
             var temp = new Contract()
             {
@@ -82,8 +86,8 @@ namespace MotelManage.PresentationTier
             foreach (DataGridViewRow item in dgvServiceNoteDetail.Rows)
             {
                 DataGridViewTextBoxCell celNumberOld = (DataGridViewTextBoxCell)item.Cells[1];
-                DataGridViewTextBoxCell celNumberNew = (DataGridViewTextBoxCell)item.Cells[2];
-                DataGridViewTextBoxCell celNumberUsed = (DataGridViewTextBoxCell)item.Cells[3];
+                //DataGridViewTextBoxCell celNumberNew = (DataGridViewTextBoxCell)item.Cells[2];
+                //DataGridViewTextBoxCell celNumberUsed = (DataGridViewTextBoxCell)item.Cells[3];
                 if(btnSave.Text=="Save")
                 {
                     int numberOldValue = 0;
@@ -114,56 +118,115 @@ namespace MotelManage.PresentationTier
             if (btnSave.Text == "Close")
                 this.Close();
             else
-                if (checkContraints())
-                {
-                    try
-                    {
-                        XElement xmlData = ConvertToXmlData();
+                SaveServiceNote();
 
-                        ServiceNote svcn = new ServiceNote()
-                        {
-                            Id = txtId.Text,
-                            Date = dateTimePickerDate.Text,
-                            Total = decimal.Parse(txtTotalMoney.Text.Trim() == "" ? "0" : txtTotalMoney.Text.Trim()),
-                            Conntractid = txtContractID.Text.Trim()
-                        };
-
-
-                        if (this.Text == "Edit service note")
-                        {
-                            //Edit
-                            if (serviceNoteBLT.updateServiceNote(svcn, xmlData))
-                            {
-                                MessageBox.Show("Update " + txtId.Text.Trim().ToUpper() + " successfully!");
-                                EditCompletedHandler(txtId.Text.Trim());
-                                this.Close();
-                            }
-                            else
-                                MessageBox.Show("Update " + txtId.Text.ToUpper() + " fail!");
-                        }
-                        else
-                        {
-                            //Insert
-                            string id;
-                            if (serviceNoteBLT.addServiceNote(svcn, xmlData, out id))
-                            {
-                                MessageBox.Show("Insert service note of " + txtContractID.Text.Trim().ToUpper() + " successfully!\nThe new service note Id = " + id + ".");
-                                EditCompletedHandler(id);
-                                this.Close();
-                            }
-                            else
-                                MessageBox.Show("Insert fail! Try again later.");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
         }
+
         private void btnSaveAndExport_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Chưa có code hàm này! :D");
+            if(MessageBox.Show("If you export to Tollbills, you will not be able to edit or delete it again?\n\nDo you want to continues?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                var serviceNoteId = SaveServiceNote();
+                if (!string.IsNullOrEmpty(serviceNoteId))
+                {
+                    DataTable debtTable = debtBLT.searchDebt(new Debt()
+                    {
+                        Contractid = txtContractID.Text,
+                        DateSet = "",
+                    });
+
+                    decimal debt = 0, priceRoom = 0, totalTollsBill = 0;
+                    if (debtTable != null && debtTable.Rows.Count > 0)
+                    {
+                        debt = (debtTable.Rows[0] as DataRow).Field<decimal>("DEBTUNTILDATE");
+                    }
+
+                    DataTable contractTable = contractBLT.searchContract(new Contract()
+                    {
+                        Id = txtContractID.Text,
+                        IsValid = true
+                    });
+                    if (contractTable != null && contractTable.Rows.Count > 0)
+                    {
+                        priceRoom = (contractTable.Rows[0] as DataRow).Field<decimal>("PRICEROOM");
+                    }
+                    totalTollsBill = priceRoom + decimal.Parse(txtTotalMoney.Text) + debt;
+
+                    TollBills tollBills = new TollBills()
+                    {
+                        Datetoll = dateTimePickerDate.Text,
+                        DiscountMoney = 0,
+                        DebtUntilDate = debt,
+                        Servicenoteid = serviceNoteId,
+                        Note = "",
+                        Total = totalTollsBill
+                    };
+                    
+                    //Insert
+                    string id;
+                    if (tollBillsBLT.addTollBill(tollBills, out id))
+                    {
+                        MessageBox.Show("Export to Tollbills of " + serviceNoteId.ToUpper() + " successfully!\nThe new tollbills Id = " + id + ".");
+                        this.Close();
+                    }
+                    else
+                        MessageBox.Show("Export fail! Try again later.");
+                }
+            }
+        }
+
+        private string SaveServiceNote()
+        {
+            string serviceNoteId = null;
+            if (checkContraints())
+            {
+                try
+                {
+                    XElement xmlData = ConvertToXmlData();
+
+                    ServiceNote svcn = new ServiceNote()
+                    {
+                        Id = txtId.Text,
+                        Date = dateTimePickerDate.Text,
+                        Total = decimal.Parse(txtTotalMoney.Text.Trim() == "" ? "0" : txtTotalMoney.Text.Trim()),
+                        Conntractid = txtContractID.Text.Trim()
+                    };
+
+
+                    if (this.Text == "Edit service note")
+                    {
+                        //Edit
+                        if (serviceNoteBLT.updateServiceNote(svcn, xmlData))
+                        {
+                            MessageBox.Show("Update " + txtId.Text.Trim().ToUpper() + " successfully!");
+                            EditCompletedHandler(txtId.Text.Trim());
+                            serviceNoteId = txtId.Text.Trim();
+                            //this.Close();
+                        }
+                        else
+                            MessageBox.Show("Update " + txtId.Text.ToUpper() + " fail!");
+                    }
+                    else
+                    {
+                        //Insert
+                        string id;
+                        if (serviceNoteBLT.addServiceNote(svcn, xmlData, out id))
+                        {
+                            MessageBox.Show("Insert service note of " + txtContractID.Text.Trim().ToUpper() + " successfully!\nThe new service note Id = " + id + ".");
+                            EditCompletedHandler(id);
+                            serviceNoteId = id;
+                            //this.Close();
+                        }
+                        else
+                            MessageBox.Show("Insert fail! Try again later.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            return serviceNoteId;
         }
 
         private void cmbRoom_SelectedIndexChanged(object sender, EventArgs e)

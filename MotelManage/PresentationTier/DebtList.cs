@@ -38,9 +38,9 @@ namespace MotelManage.PresentationTier
             {
                 d.Id = dataDebtList.Rows[rowindex].Cells[0].Value.ToString();
                 d.Contractid = dataDebtList.Rows[rowindex].Cells[1].Value.ToString();
-                d.DateSet = DateTime.Parse(dataDebtList.Rows[rowindex].Cells[2].Value.ToString());
-                d.DebtUnitldate = Decimal.Parse(dataDebtList.Rows[rowindex].Cells[3].Value.ToString());
-                d.Node = dataDebtList.Rows[rowindex].Cells[4].Value.ToString();
+                d.DateSet = dataDebtList.Rows[rowindex].Cells[2].Value.ToString();
+                d.DebtUntildate = Decimal.Parse(dataDebtList.Rows[rowindex].Cells[3].Value.ToString());
+                d.Note = dataDebtList.Rows[rowindex].Cells[4].Value.ToString();
             }
             }
         }
@@ -61,9 +61,9 @@ namespace MotelManage.PresentationTier
                 this.ctrID.Text = contractId;
                 d.Id = dataDebtList.Rows[index].Cells[0].Value.ToString();
                 d.Contractid = dataDebtList.Rows[index].Cells[1].Value.ToString();
-                d.DateSet = DateTime.Parse(dataDebtList.Rows[index].Cells[2].Value.ToString());
-                d.DebtUnitldate = Decimal.Parse(dataDebtList.Rows[index].Cells[3].Value.ToString());
-                d.Node = dataDebtList.Rows[index].Cells[4].Value.ToString();
+                d.DateSet = dataDebtList.Rows[index].Cells[2].Value.ToString();
+                d.DebtUntildate = Decimal.Parse(dataDebtList.Rows[index].Cells[3].Value.ToString());
+                d.Note = dataDebtList.Rows[index].Cells[4].Value.ToString();
            } 
         }
 

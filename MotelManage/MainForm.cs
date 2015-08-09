@@ -65,7 +65,7 @@ namespace MotelManage
 
         private void contractToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ContactList().Show();
+            new ContractList().Show();
         }
 
         private void spendToolStripMenuItem_Click(object sender, EventArgs e)
