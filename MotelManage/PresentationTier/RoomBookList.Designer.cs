@@ -59,16 +59,17 @@
             this.tbID.MaxLength = 10;
             this.tbID.Name = "tbID";
             this.tbID.Size = new System.Drawing.Size(151, 20);
-            this.tbID.TabIndex = 51;
+            this.tbID.TabIndex = 0;
             // 
             // cbCustomer
             // 
+            this.cbCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCustomer.FormattingEnabled = true;
             this.cbCustomer.Location = new System.Drawing.Point(103, 72);
             this.cbCustomer.Margin = new System.Windows.Forms.Padding(2);
             this.cbCustomer.Name = "cbCustomer";
             this.cbCustomer.Size = new System.Drawing.Size(151, 21);
-            this.cbCustomer.TabIndex = 48;
+            this.cbCustomer.TabIndex = 2;
             // 
             // label8
             // 
@@ -126,16 +127,17 @@
             this.dateBegin.Margin = new System.Windows.Forms.Padding(2);
             this.dateBegin.Name = "dateBegin";
             this.dateBegin.Size = new System.Drawing.Size(151, 20);
-            this.dateBegin.TabIndex = 40;
+            this.dateBegin.TabIndex = 4;
             // 
             // cbRoom
             // 
+            this.cbRoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRoom.FormattingEnabled = true;
             this.cbRoom.Location = new System.Drawing.Point(103, 40);
             this.cbRoom.Margin = new System.Windows.Forms.Padding(2);
             this.cbRoom.Name = "cbRoom";
             this.cbRoom.Size = new System.Drawing.Size(151, 21);
-            this.cbRoom.TabIndex = 39;
+            this.cbRoom.TabIndex = 1;
             // 
             // label1
             // 
@@ -149,55 +151,61 @@
             // 
             // gridRoomBook
             // 
+            this.gridRoomBook.AllowUserToAddRows = false;
+            this.gridRoomBook.AllowUserToDeleteRows = false;
+            this.gridRoomBook.AllowUserToResizeColumns = false;
+            this.gridRoomBook.AllowUserToResizeRows = false;
             this.gridRoomBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridRoomBook.Location = new System.Drawing.Point(9, 252);
             this.gridRoomBook.Margin = new System.Windows.Forms.Padding(2);
             this.gridRoomBook.Name = "gridRoomBook";
+            this.gridRoomBook.ReadOnly = true;
             this.gridRoomBook.RowTemplate.Height = 24;
             this.gridRoomBook.Size = new System.Drawing.Size(790, 181);
-            this.gridRoomBook.TabIndex = 53;
+            this.gridRoomBook.TabIndex = 12;
+            this.gridRoomBook.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridRoomBook_CellClick);
             this.gridRoomBook.SelectionChanged += new System.EventHandler(this.gridRoomBook_SelectionChanged);
             // 
             // btSearch
             // 
-            this.btSearch.Location = new System.Drawing.Point(106, 214);
+            this.btSearch.Location = new System.Drawing.Point(207, 210);
             this.btSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btSearch.Name = "btSearch";
             this.btSearch.Size = new System.Drawing.Size(76, 27);
-            this.btSearch.TabIndex = 57;
+            this.btSearch.TabIndex = 8;
             this.btSearch.Text = "Search";
             this.btSearch.UseVisualStyleBackColor = true;
             this.btSearch.Click += new System.EventHandler(this.btSearch_Click);
             // 
             // btDelete
             // 
-            this.btDelete.Location = new System.Drawing.Point(433, 214);
+            this.btDelete.Location = new System.Drawing.Point(534, 210);
             this.btDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btDelete.Name = "btDelete";
             this.btDelete.Size = new System.Drawing.Size(76, 27);
-            this.btDelete.TabIndex = 56;
+            this.btDelete.TabIndex = 11;
             this.btDelete.Text = "Delete";
             this.btDelete.UseVisualStyleBackColor = true;
             this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
             // 
             // btAdd
             // 
-            this.btAdd.Location = new System.Drawing.Point(218, 214);
+            this.btAdd.Location = new System.Drawing.Point(319, 210);
             this.btAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(76, 27);
-            this.btAdd.TabIndex = 55;
+            this.btAdd.TabIndex = 9;
             this.btAdd.Text = "Add";
             this.btAdd.UseVisualStyleBackColor = true;
             this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
             // 
             // btEdit
             // 
-            this.btEdit.Location = new System.Drawing.Point(326, 214);
+            this.btEdit.Location = new System.Drawing.Point(427, 210);
             this.btEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btEdit.Name = "btEdit";
             this.btEdit.Size = new System.Drawing.Size(76, 27);
-            this.btEdit.TabIndex = 54;
+            this.btEdit.TabIndex = 10;
             this.btEdit.Text = "Edit";
             this.btEdit.UseVisualStyleBackColor = true;
             this.btEdit.Click += new System.EventHandler(this.btEdit_Click);
@@ -208,7 +216,7 @@
             this.dateEnd.Margin = new System.Windows.Forms.Padding(2);
             this.dateEnd.Name = "dateEnd";
             this.dateEnd.Size = new System.Drawing.Size(151, 20);
-            this.dateEnd.TabIndex = 40;
+            this.dateEnd.TabIndex = 6;
             // 
             // tbNote
             // 
@@ -217,7 +225,7 @@
             this.tbNote.Multiline = true;
             this.tbNote.Name = "tbNote";
             this.tbNote.Size = new System.Drawing.Size(151, 147);
-            this.tbNote.TabIndex = 58;
+            this.tbNote.TabIndex = 7;
             // 
             // label4
             // 
@@ -235,7 +243,9 @@
             this.tbDeposit.MaxLength = 18;
             this.tbDeposit.Name = "tbDeposit";
             this.tbDeposit.Size = new System.Drawing.Size(151, 20);
-            this.tbDeposit.TabIndex = 59;
+            this.tbDeposit.TabIndex = 5;
+            this.tbDeposit.Text = "0\r\n";
+            this.tbDeposit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbDeposit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbDeposit_KeyPress);
             // 
             // label5
@@ -250,12 +260,13 @@
             // 
             // cbStatusRoomBook
             // 
+            this.cbStatusRoomBook.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatusRoomBook.FormattingEnabled = true;
             this.cbStatusRoomBook.Location = new System.Drawing.Point(103, 103);
             this.cbStatusRoomBook.Margin = new System.Windows.Forms.Padding(2);
             this.cbStatusRoomBook.Name = "cbStatusRoomBook";
             this.cbStatusRoomBook.Size = new System.Drawing.Size(151, 21);
-            this.cbStatusRoomBook.TabIndex = 48;
+            this.cbStatusRoomBook.TabIndex = 3;
             // 
             // RoomBookList
             // 
@@ -283,7 +294,10 @@
             this.Controls.Add(this.dateBegin);
             this.Controls.Add(this.cbRoom);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RoomBookList";
             this.Text = "RoomBookList";
             this.Load += new System.EventHandler(this.RoomBookList_Load);

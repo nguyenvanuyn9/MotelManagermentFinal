@@ -22,7 +22,7 @@ namespace MotelManage.DataAccessTier
         {
             try
             {
-                string sql = "select RM.ID, RM.NAME, RM.STATUSID, RMS.NAME AS STATUSNAME, RM.ROOMTYPEID, RMT.NAME AS ROOMTYPENAME, RMT.PRICE, RMT.DEPOSIT, RMT.NOTE " +
+                string sql = "select RM.ID, RM.NAME, RM.STATUSID, RMS.NAME AS STATUSNAME, RM.ROOMTYPEID, RMT.NAME AS ROOMTYPENAME " +
                              "from ROOM RM " +
                              "LEFT JOIN ROOMSTATUS RMS " +
                              "ON RM.STATUSID = RMS.ID " +
@@ -181,6 +181,53 @@ namespace MotelManage.DataAccessTier
             return null;
         }
 
+        public String getRoomStatusById(String id)
+        {
+            String status = "";
+            DataTable result;
+
+            try
+            {
+                string sql = "SELECT statusID FROM room where id='" + id + "'";
+
+                result = this.LoadDataTable(sql);
+
+                status = result.Rows[0][0].ToString();
+
+                return status;
+
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+            return null;
+        }
+         
+
+        public int checkDuplidateName(String name)
+        {
+            int count = -1;
+            DataTable result;
+
+            try
+            {
+                string sql = "Select count(*) from room where name='" + name + "'";
+
+                result = this.LoadDataTable(sql);
+
+                count = Convert.ToInt32(result.Rows[0][0].ToString());
+
+                return count;
+
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+            return -1 ;
+        }
+
         public String getNameRoomStatusById(String id)
         {
             String name = "";
@@ -204,7 +251,7 @@ namespace MotelManage.DataAccessTier
             return null;
         }
 
-        public DataTable searchRoom(Room room)
+        public DataTable SearchRoom(Room room)
         {
             try
             {

@@ -59,6 +59,17 @@ namespace MotelManage.BusinessLogicTier
             return roomDAT.getListRoomStatus();
         }
 
+        public String getRoomStatusById(String id)
+        {
+            return roomDAT.getRoomStatusById(id);
+        }
+         
+
+        public int checkDuplidateName(String name)
+        {
+            return roomDAT.checkDuplidateName(name);
+        }
+
         public String getNameRoomTypeById(String id)
         {
             return roomDAT.getNameRoomTypeById(id);
@@ -71,9 +82,10 @@ namespace MotelManage.BusinessLogicTier
 
         public DataTable searchRoom(Room room)
         {
+
             try
             {
-                return roomDAT.searchRoom(room);
+                return roomDAT.SearchRoom(room);
             }
             catch (System.Exception ex)
             {

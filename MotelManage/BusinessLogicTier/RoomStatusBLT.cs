@@ -59,5 +59,17 @@ namespace MotelManage.BusinessLogicTier
             }
             return null;
         }
+
+        public int checkIsUsed(String status)
+        {
+          return roomStatusDAT.checkIsUsed(status);
+        }
+
+        public int checkDuplidateName(String name)
+        {
+            return roomStatusDAT.checkDuplidateName(name);
+        }
+
+
     }
 }

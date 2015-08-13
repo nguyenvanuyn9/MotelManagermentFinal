@@ -32,77 +32,78 @@ namespace MotelManage.PresentationTier
 
         private void gridRoomStatus_SelectionChanged(object sender, EventArgs e)
         {
-           rowIndex = this.gridRoomStatus.CurrentCell.RowIndex;
-
-           if (rowIndex < gridRoomStatus.RowCount - 1)
-           {
-
-               string value1 = gridRoomStatus.Rows[rowIndex].Cells[0].Value.ToString();
-               string value2 = gridRoomStatus.Rows[rowIndex].Cells[1].Value.ToString();
-
-               this.tbID.Text = value1;
-               this.tbName.Text = value2;
-           }
+          
         }
 
         private void btEdit_Click(object sender, EventArgs e)
         {
-            if (gridRoomStatus.Rows.Count > 1)
+            if (gridRoomStatus.Rows.Count > 0)
             {
-                rowIndex = this.gridRoomStatus.CurrentCell.RowIndex;
 
-                if ((rowIndex < gridRoomStatus.RowCount - 1) && (rowIndex >= 0))
+                if ((rowIndex < gridRoomStatus.RowCount) && (rowIndex >= 0))
                 {
                     RoomStatus editRoom = new RoomStatus();
 
                     editRoom.Id = gridRoomStatus.Rows[rowIndex].Cells[0].Value.ToString();
                     editRoom.Name = this.tbName.Text;
 
-                    RoomStatusEdit editform = new RoomStatusEdit(editRoom, 1);
-                    editform.Show();
+                    if (roomStatusBLT.checkIsUsed(editRoom.Id) > 0)
+                    {
+                        MessageBox.Show("Status is used. Don't update!");
+                    }
+                    else
+                    {
+                        RoomStatusEdit editform = new RoomStatusEdit(editRoom, 1);
+                        editform.Show();
+                        this.Hide();
+                    }
 
-                    this.Hide();
                 }
-            }else
-             {
-                 MessageBox.Show("No row Selected!");
-             }
-            
+                else
+                {
+                    MessageBox.Show("No row Selected!");
+                }
+            }
         }
 
         private void btDelete_Click(object sender, EventArgs e)
         {
-             if (gridRoomStatus.Rows.Count > 1)
+            if (gridRoomStatus.Rows.Count > 0)
             {
-
-                rowIndex = this.gridRoomStatus.CurrentCell.RowIndex;
-
-                if ((rowIndex < gridRoomStatus.RowCount - 1) && (rowIndex >= 0))
+                if ((rowIndex < gridRoomStatus.RowCount ) && (rowIndex >= 0))
                 {
 
                     string id = gridRoomStatus.Rows[rowIndex].Cells[0].Value.ToString();
 
-                    DialogResult dialogResult = MessageBox.Show("Are you sure?", "Delete", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
+                    if (roomStatusBLT.checkIsUsed(id) > 0)
                     {
-                        if (rowIndex >= 0)
+                        MessageBox.Show("Status is used. Don't delete!");
+                    }
+                    else
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Are you sure?", "Delete", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes)
                         {
+                            if (rowIndex >= 0)
+                            {
 
-                            if (roomStatusBLT.deleteRoomStatus(id))
-                            {
-                                MessageBox.Show("Delete Success!");
-                                this.gridRoomStatus.DataSource = roomStatusBLT.getListData();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Error Delete!");
+                                if (roomStatusBLT.deleteRoomStatus(id))
+                                {
+                                    MessageBox.Show("Delete Success!");
+                                    this.gridRoomStatus.DataSource = roomStatusBLT.getListData();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error Delete!");
+                                }
                             }
                         }
+                        else if (dialogResult == DialogResult.No)
+                        {
+                            //do something else
+                        }
                     }
-                    else if (dialogResult == DialogResult.No)
-                    {
-                        //do something else
-                    }
+                   
                 }
                 else
                 {
@@ -134,7 +135,20 @@ namespace MotelManage.PresentationTier
             this.gridRoomStatus.DataSource = roomStatusBLT.searchRoomStatus(searchRoom);
         }
 
-       
-     
+        private void gridRoomStatus_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            rowIndex = e.RowIndex;
+
+            if (rowIndex > -1)
+            {
+                string value1 = gridRoomStatus.Rows[rowIndex].Cells[0].Value.ToString();
+                string value2 = gridRoomStatus.Rows[rowIndex].Cells[1].Value.ToString();
+
+                this.tbID.Text = value1;
+                this.tbName.Text = value2;
+
+            }
+        }
+
     }
 }

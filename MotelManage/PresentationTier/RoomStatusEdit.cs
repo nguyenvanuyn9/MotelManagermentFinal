@@ -46,30 +46,38 @@ namespace MotelManage.PresentationTier
                 roomstatus.Name = this.txtName.Text;
                 roomstatus.Id = this.txtID.Text;
 
-                if (typeHandle == 1)//Edit
+                if (roomStatusBLT.checkDuplidateName(roomstatus.Name) > 0)
                 {
+                    MessageBox.Show("Duplicate name!");
+                }
+                else
+                {
+                    if (typeHandle == 1)//Edit
+                    {
 
-                    if (roomStatusBLT.updateRoomStatus(roomstatus))
-                    {
-                        MessageBox.Show("Update Success!");
+                        if (roomStatusBLT.updateRoomStatus(roomstatus))
+                        {
+                            MessageBox.Show("Update Success!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error Update");
+                        }
                     }
-                    else
+
+                    if (typeHandle == 2)//New
                     {
-                        MessageBox.Show("Error Update");
+                        if (roomStatusBLT.addRoomStatus(roomstatus))
+                        {
+                            MessageBox.Show("Add Success!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error Add");
+                        }
                     }
                 }
-
-                if (typeHandle == 2)//New
-                {
-                    if (roomStatusBLT.addRoomStatus(roomstatus))
-                    {
-                        MessageBox.Show("Add Success!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error Add");
-                    }
-                }
+           
             }
         }
 

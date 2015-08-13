@@ -25,11 +25,13 @@ namespace MotelManage.BusinessLogicTier
             return table;
         }
 
-        public DataTable searchRoomBook(RoomBook roomBook, string customerName="")
+        public DataTable searchRoomBook(RoomBook roomBook)
         {
+
             try
-            {                
-                DataTable table = roomBookDAT.SearchRoomBook(roomBook, customerName);
+            {
+                
+                DataTable table = roomBookDAT.SearchRoomBook(roomBook);
 
                 return table;
             }
@@ -64,12 +66,37 @@ namespace MotelManage.BusinessLogicTier
             //phong moi -->>Thue
         }
 
+        public bool updateRoomStatus(String roomId, String status)
+        {
+            return roomBookDAT.updateRoomStatus(roomId, status);
+        }
+
         //==================================
 
-        public String getNameRoomById(String id)
+       /* public String getNameRoomById(String id)
         {
             return roomBookDAT.getNameRoomById(id);
+        }*/
+
+        public String getRoomBookStatusId(String id)
+        {
+            return roomBookDAT.getRoomBookStatusId(id);
         }
+
+        public String getRoomId(String id)
+        {
+            return roomBookDAT.getRoomId(id);
+        }
+
+        public String getCustomerId(String id)
+        {
+            return roomBookDAT.getCustomerId(id);
+        }
+
+
+
+
+
 
         public DataTable getListRoom()
         {

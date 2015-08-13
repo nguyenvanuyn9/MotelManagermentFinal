@@ -41,30 +41,38 @@ namespace MotelManage.PresentationTier
                 room.RoomType = this.cbTypeRoom.SelectedValue.ToString();
                 room.StatusID = this.cbStatus.SelectedValue.ToString();
 
-                if (typeHandle == 1)//Edit
+                if (roomBLT.checkDuplidateName(room.Name) > 0)
                 {
+                    MessageBox.Show("Duplicate name!");
+                }
+                else
+                {
+                    if (typeHandle == 1)//Edit
+                    {
 
-                    if (roomBLT.updateRoom(room))
-                    {
-                        MessageBox.Show("Update Success!");
+                        if (roomBLT.updateRoom(room))
+                        {
+                            MessageBox.Show("Update Success!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error Update");
+                        }
                     }
-                    else
+
+                    if (typeHandle == 2)//New
                     {
-                        MessageBox.Show("Error Update");
+                        if (roomBLT.addRoom(room))
+                        {
+                            MessageBox.Show("Add Success!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error Add");
+                        }
                     }
                 }
 
-                if (typeHandle == 2)//New
-                {
-                    if (roomBLT.addRoom(room))
-                    {
-                        MessageBox.Show("Add Success!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error Add");
-                    }
-                }
             }
         }
 
@@ -88,6 +96,8 @@ namespace MotelManage.PresentationTier
         private void btExit_Click(object sender, EventArgs e)
         {
             this.Dispose();
+
+          
 
             RoomList newform = new RoomList();
             newform.Show();

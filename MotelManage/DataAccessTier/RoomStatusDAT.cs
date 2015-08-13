@@ -114,5 +114,51 @@ namespace MotelManage.DataAccessTier
             }
             return null;
         }
+
+        public int checkIsUsed(String status)
+        {
+            int count = -1;
+            DataTable result;
+
+            try
+            {
+                string sql = "Select count(*) from room where statusID='" + status + "'";
+
+                result = this.LoadDataTable(sql);
+
+                count = Convert.ToInt32(result.Rows[0][0].ToString());
+
+                return count;
+
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+            return -1;
+        }
+
+        public int checkDuplidateName(String name)
+        {
+            int count = -1;
+            DataTable result;
+
+            try
+            {
+                string sql = "Select count(*) from roomstatus where name='" + name + "'";
+
+                result = this.LoadDataTable(sql);
+
+                count = Convert.ToInt32(result.Rows[0][0].ToString());
+
+                return count;
+
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+            return -1;
+        }
     }
 }

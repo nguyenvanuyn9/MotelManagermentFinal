@@ -42,7 +42,7 @@
             this.btSave.Margin = new System.Windows.Forms.Padding(2);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(76, 27);
-            this.btSave.TabIndex = 47;
+            this.btSave.TabIndex = 2;
             this.btSave.Text = "Save";
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
@@ -54,7 +54,7 @@
             this.txtName.MaxLength = 100;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(170, 20);
-            this.txtName.TabIndex = 44;
+            this.txtName.TabIndex = 1;
             // 
             // txtID
             // 
@@ -63,7 +63,7 @@
             this.txtID.MaxLength = 10;
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(170, 20);
-            this.txtID.TabIndex = 42;
+            this.txtID.TabIndex = 0;
             // 
             // label2
             // 
@@ -90,7 +90,7 @@
             this.btExit.Location = new System.Drawing.Point(160, 83);
             this.btExit.Name = "btExit";
             this.btExit.Size = new System.Drawing.Size(75, 23);
-            this.btExit.TabIndex = 48;
+            this.btExit.TabIndex = 3;
             this.btExit.Text = "Exit";
             this.btExit.UseVisualStyleBackColor = true;
             this.btExit.Click += new System.EventHandler(this.btExit_Click);
@@ -106,7 +106,10 @@
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RoomStatusEdit";
             this.Text = "RoomStatusEdit";
             this.Load += new System.EventHandler(this.RoomStatusEdit_Load);

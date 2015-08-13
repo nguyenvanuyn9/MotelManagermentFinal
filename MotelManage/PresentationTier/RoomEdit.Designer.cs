@@ -47,7 +47,7 @@
             this.tbName.MaxLength = 100;
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(170, 20);
-            this.tbName.TabIndex = 26;
+            this.tbName.TabIndex = 1;
             // 
             // tbID
             // 
@@ -56,7 +56,7 @@
             this.tbID.MaxLength = 10;
             this.tbID.Name = "tbID";
             this.tbID.Size = new System.Drawing.Size(170, 20);
-            this.tbID.TabIndex = 24;
+            this.tbID.TabIndex = 0;
             // 
             // label2
             // 
@@ -94,34 +94,36 @@
             this.btSave.Margin = new System.Windows.Forms.Padding(2);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(76, 27);
-            this.btSave.TabIndex = 29;
+            this.btSave.TabIndex = 4;
             this.btSave.Text = "Save";
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
             // cbStatus
             // 
+            this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatus.FormattingEnabled = true;
             this.cbStatus.Location = new System.Drawing.Point(68, 86);
             this.cbStatus.Margin = new System.Windows.Forms.Padding(2);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(170, 21);
-            this.cbStatus.TabIndex = 30;
+            this.cbStatus.TabIndex = 2;
             // 
             // cbTypeRoom
             // 
+            this.cbTypeRoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTypeRoom.FormattingEnabled = true;
             this.cbTypeRoom.Location = new System.Drawing.Point(70, 122);
             this.cbTypeRoom.Name = "cbTypeRoom";
             this.cbTypeRoom.Size = new System.Drawing.Size(168, 21);
-            this.cbTypeRoom.TabIndex = 31;
+            this.cbTypeRoom.TabIndex = 3;
             // 
             // btExit
             // 
             this.btExit.Location = new System.Drawing.Point(212, 190);
             this.btExit.Name = "btExit";
             this.btExit.Size = new System.Drawing.Size(75, 23);
-            this.btExit.TabIndex = 32;
+            this.btExit.TabIndex = 5;
             this.btExit.Text = "Exit";
             this.btExit.UseVisualStyleBackColor = true;
             this.btExit.Click += new System.EventHandler(this.btExit_Click);
@@ -151,7 +153,10 @@
             this.Controls.Add(this.tbID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RoomEdit";
             this.Text = "RoomEdit";
             this.Load += new System.EventHandler(this.RoomEdit_Load);

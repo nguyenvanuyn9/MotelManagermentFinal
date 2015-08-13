@@ -46,13 +46,19 @@
             // 
             // gridRoomList
             // 
+            this.gridRoomList.AllowUserToAddRows = false;
+            this.gridRoomList.AllowUserToDeleteRows = false;
+            this.gridRoomList.AllowUserToResizeColumns = false;
+            this.gridRoomList.AllowUserToResizeRows = false;
             this.gridRoomList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridRoomList.Location = new System.Drawing.Point(9, 169);
             this.gridRoomList.Margin = new System.Windows.Forms.Padding(2);
             this.gridRoomList.Name = "gridRoomList";
+            this.gridRoomList.ReadOnly = true;
             this.gridRoomList.RowTemplate.Height = 24;
             this.gridRoomList.Size = new System.Drawing.Size(668, 240);
-            this.gridRoomList.TabIndex = 0;
+            this.gridRoomList.TabIndex = 8;
+            this.gridRoomList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridRoomList_CellClick);
             this.gridRoomList.SelectionChanged += new System.EventHandler(this.gridRoomList_SelectionChanged);
             // 
             // btSearch
@@ -61,7 +67,7 @@
             this.btSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btSearch.Name = "btSearch";
             this.btSearch.Size = new System.Drawing.Size(76, 27);
-            this.btSearch.TabIndex = 14;
+            this.btSearch.TabIndex = 4;
             this.btSearch.Text = "Search";
             this.btSearch.UseVisualStyleBackColor = true;
             this.btSearch.Click += new System.EventHandler(this.btSearch_Click);
@@ -72,7 +78,7 @@
             this.btDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btDelete.Name = "btDelete";
             this.btDelete.Size = new System.Drawing.Size(76, 27);
-            this.btDelete.TabIndex = 13;
+            this.btDelete.TabIndex = 7;
             this.btDelete.Text = "Delete";
             this.btDelete.UseVisualStyleBackColor = true;
             this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
@@ -83,7 +89,7 @@
             this.btAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(76, 27);
-            this.btAdd.TabIndex = 12;
+            this.btAdd.TabIndex = 5;
             this.btAdd.Text = "Add";
             this.btAdd.UseVisualStyleBackColor = true;
             this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
@@ -94,7 +100,7 @@
             this.btEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btEdit.Name = "btEdit";
             this.btEdit.Size = new System.Drawing.Size(76, 27);
-            this.btEdit.TabIndex = 11;
+            this.btEdit.TabIndex = 6;
             this.btEdit.Text = "Edit";
             this.btEdit.UseVisualStyleBackColor = true;
             this.btEdit.Click += new System.EventHandler(this.btEdit_Click);
@@ -126,7 +132,7 @@
             this.tbID.MaxLength = 10;
             this.tbID.Name = "tbID";
             this.tbID.Size = new System.Drawing.Size(170, 20);
-            this.tbID.TabIndex = 18;
+            this.tbID.TabIndex = 0;
             // 
             // tbName
             // 
@@ -135,23 +141,25 @@
             this.tbName.MaxLength = 100;
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(170, 20);
-            this.tbName.TabIndex = 20;
+            this.tbName.TabIndex = 1;
             // 
             // cbStatus
             // 
+            this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatus.FormattingEnabled = true;
             this.cbStatus.Location = new System.Drawing.Point(385, 25);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(184, 21);
-            this.cbStatus.TabIndex = 21;
+            this.cbStatus.TabIndex = 2;
             // 
             // cbtype
             // 
+            this.cbtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbtype.FormattingEnabled = true;
             this.cbtype.Location = new System.Drawing.Point(385, 54);
             this.cbtype.Name = "cbtype";
             this.cbtype.Size = new System.Drawing.Size(184, 21);
-            this.cbtype.TabIndex = 22;
+            this.cbtype.TabIndex = 3;
             // 
             // label4
             // 
@@ -191,7 +199,10 @@
             this.Controls.Add(this.btAdd);
             this.Controls.Add(this.btEdit);
             this.Controls.Add(this.gridRoomList);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RoomList";
             this.Text = "RoomList";
             this.Load += new System.EventHandler(this.RoomList_Load);

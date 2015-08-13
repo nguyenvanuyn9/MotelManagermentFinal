@@ -73,7 +73,8 @@ namespace MotelManage.DataAccessTier
 
             return false;
         }
-        
+
+
         public bool deleteRoomBook(String id)
         {
             try
@@ -123,22 +124,22 @@ namespace MotelManage.DataAccessTier
             return false;
         }
 
-        public DataTable SearchRoomBook(RoomBook roomBook, string customerName="")
+        public DataTable SearchRoomBook(RoomBook roomBook)
         {
             try
             {
-                SqlParameter[] para = new SqlParameter[10];
+                SqlParameter[] para = new SqlParameter[8];
 
                 para[0] = new SqlParameter("@p_id", roomBook.Id);
                 para[1] = new SqlParameter("@p_begindate", roomBook.Begindate);
                 para[2] = new SqlParameter("@p_enddate", roomBook.Enddate);
                 para[3] = new SqlParameter("@p_roomid", roomBook.Roomid);
                 para[4] = new SqlParameter("@p_customerid", roomBook.Customerid);
+
                 para[5] = new SqlParameter("@p_roombookStatusId", roomBook.RoomBookStatusid);
+
                 para[6] = new SqlParameter("@p_note", roomBook.Note);
                 para[7] = new SqlParameter("@p_deposit", roomBook.Deposit);
-                para[8] = new SqlParameter("@p_customerName", customerName);
-                para[9] = new SqlParameter("@p_top", 0);
 
                 DataTable lstRoomBook = LoadDataTableStoreProcedure("RoomBook_Search", para);
                 return lstRoomBook;
@@ -206,14 +207,14 @@ namespace MotelManage.DataAccessTier
             return null;
         }
 
-        public String getNameRoomById(String id)
+        public String getRoomBookStatusId(String id)
         {
             String name = "";
             DataTable result;
 
             try
             {
-                string sql = "SELECT name FROM room where id='" + id + "'";
+                string sql = "SELECT roombookstatusid FROM roombook where id='" + id + "'";
 
                 result = this.LoadDataTable(sql);
 
@@ -229,6 +230,51 @@ namespace MotelManage.DataAccessTier
             return null;
         }
 
+        public String getRoomId(String id)
+        {
+            String name = "";
+            DataTable result;
+
+            try
+            {
+                string sql = "SELECT roomid FROM roombook where id='" + id + "'";
+
+                result = this.LoadDataTable(sql);
+
+                name = (result.Rows[0][0]).ToString();
+
+                return name;
+
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+            return null;
+        }
+
+        public String getCustomerId(String id)
+        {
+            String name = "";
+            DataTable result;
+
+            try
+            {
+                string sql = "SELECT customerid FROM roombook where id='" + id + "'";
+
+                result = this.LoadDataTable(sql);
+
+                name = (result.Rows[0][0]).ToString();
+
+                return name;
+
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+            return null;
+        }
         //=============
 
         public bool updateRoomBookDelay(String statusId, String now )
@@ -252,5 +298,30 @@ namespace MotelManage.DataAccessTier
             }
             return false;
         }
+
+        public bool updateRoomStatus(String roomId, String status)
+        {
+            try
+            {
+                SqlParameter[] para = new SqlParameter[2];
+                para[0] = new SqlParameter("@status", status);
+                para[1] = new SqlParameter("@id", roomId);
+
+
+
+
+                int result = this.ExecuteNonQuery("UPDATE room SET statusID=@status WHERE id = @id", para);
+                if (result != 0)
+                {
+                    return true;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Message = {1}", ex.Message);
+            }
+            return false;
+        }
+
     }
 }

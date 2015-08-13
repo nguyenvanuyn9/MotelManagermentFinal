@@ -35,19 +35,17 @@ namespace MotelManage.PresentationTier
 
         private void RoomBookEdit_Load(object sender, EventArgs e)
         {
-           // DataTable f = roomBookBLT.getNameRoomById(this.roomBook.Roomid);
-
             if (typeHandle == 1)
             {
-                DataTable dt = roomBookBLT.getListRoom();
+                DataTable dt = roomBookBLT.getListRoomAvaiable("RMS0000001"); 
 
                 this.cbRoom.DisplayMember = "name";
                 this.cbRoom.ValueMember = "id";
-                 this.cbRoom.DataSource = dt;
+                this.cbRoom.DataSource = dt;
 
                 DataRow dr = dt.NewRow();
-                dr["name"] = roomBookBLT.getNameRoomById(this.roomBook.Roomid);
-                dr["id"] = this.roomBook.Roomid;
+                dr["name"] = this.roomBook.Roomid;
+                dr["id"] = roomBookBLT.getRoomId(this.roomBook.Id);
 
                 dt.Rows.InsertAt(dr, 0);
                 this.cbRoom.SelectedIndex = 0;
@@ -59,6 +57,9 @@ namespace MotelManage.PresentationTier
                 this.cbRoom.DataSource = roomBookBLT.getListRoomAvaiable("RMS0000001"); 
                 this.cbRoom.DisplayMember = "name";
                 this.cbRoom.ValueMember = "id";
+
+                this.cbRoom.SelectedIndex = 0;
+
             }
           
             this.cbCustomer.DataSource = roomBookBLT.getListCustomer();
@@ -88,9 +89,9 @@ namespace MotelManage.PresentationTier
 
         private void btSave_Click(object sender, EventArgs e)
         {
-
             if (check_type())
             {
+
                 roomBook.Id = this.tbID.Text;
                 roomBook.Note = this.tbNote.Text;
                 roomBook.Deposit = Convert.ToDecimal(this.tbDeposit.Text);
@@ -104,10 +105,24 @@ namespace MotelManage.PresentationTier
 
                 if (typeHandle == 1)//Edit
                 {
+                    String OldRoomId = roomBookBLT.getRoomId(this.tbID.Text);
 
                     if (roomBookBLT.updateRoomBook(roomBook))
                     {
                         MessageBox.Show("Update Success!");
+
+                        // update trang thai phong
+                       if (roomBookBLT.updateRoomStatus(roomBook.Roomid, "RMS0000002"))
+                        {
+                           // MessageBox.Show("Update RoomStus New OK!");
+                        }
+
+                        // update trang thai phong cu
+
+                       if (roomBookBLT.updateRoomStatus(OldRoomId, "RMS0000001"))
+                        {
+                           // MessageBox.Show("Update RoomStus Old OK!");
+                        }
                     }
                     else
                     {
@@ -120,6 +135,8 @@ namespace MotelManage.PresentationTier
                     if (roomBookBLT.addRoomBook(roomBook))
                     {
                         MessageBox.Show("Add Success!");
+                       // update trang thai phong
+                        roomBookBLT.updateRoomStatus(roomBook.Roomid, "RMS0000002");
                     }
                     else
                     {
@@ -234,8 +251,25 @@ namespace MotelManage.PresentationTier
 
             return result;
         }
-    
-    
+
+        private void btAddCustomer_Click(object sender, EventArgs e)
+        {
+            CustomerAdd roomEdit = new CustomerAdd();
+
+            //#1
+            roomEdit.FormClosing += new FormClosingEventHandler(frmMain_FormClosing);
+
+            roomEdit.Show();
+
+        }
+
+        void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.cbCustomer.DataSource = roomBookBLT.getListCustomer();
+            this.cbCustomer.DisplayMember = "name";
+            this.cbCustomer.ValueMember = "id";
+        }
+       
     }
 
 

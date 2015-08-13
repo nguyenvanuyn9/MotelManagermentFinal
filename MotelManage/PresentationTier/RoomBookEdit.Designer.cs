@@ -46,6 +46,7 @@
             this.tbDeposit = new System.Windows.Forms.TextBox();
             this.cbStatusRoomBook = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btAddCustomer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbID
@@ -55,7 +56,7 @@
             this.tbID.MaxLength = 10;
             this.tbID.Name = "tbID";
             this.tbID.Size = new System.Drawing.Size(151, 20);
-            this.tbID.TabIndex = 36;
+            this.tbID.TabIndex = 0;
             // 
             // btSave
             // 
@@ -63,7 +64,7 @@
             this.btSave.Margin = new System.Windows.Forms.Padding(2);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(56, 19);
-            this.btSave.TabIndex = 34;
+            this.btSave.TabIndex = 8;
             this.btSave.Text = "Save";
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
@@ -124,7 +125,7 @@
             this.dateEnd.Margin = new System.Windows.Forms.Padding(2);
             this.dateEnd.Name = "dateEnd";
             this.dateEnd.Size = new System.Drawing.Size(158, 20);
-            this.dateEnd.TabIndex = 23;
+            this.dateEnd.TabIndex = 6;
             // 
             // btExit
             // 
@@ -132,7 +133,7 @@
             this.btExit.Margin = new System.Windows.Forms.Padding(2);
             this.btExit.Name = "btExit";
             this.btExit.Size = new System.Drawing.Size(56, 19);
-            this.btExit.TabIndex = 22;
+            this.btExit.TabIndex = 9;
             this.btExit.Text = "Exit";
             this.btExit.UseVisualStyleBackColor = true;
             this.btExit.Click += new System.EventHandler(this.btExit_Click);
@@ -144,17 +145,18 @@
             this.tbNote.MaxLength = 200;
             this.tbNote.Name = "tbNote";
             this.tbNote.Size = new System.Drawing.Size(156, 124);
-            this.tbNote.TabIndex = 21;
+            this.tbNote.TabIndex = 7;
             this.tbNote.Text = "";
             // 
             // cbCustomer
             // 
+            this.cbCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCustomer.FormattingEnabled = true;
             this.cbCustomer.Location = new System.Drawing.Point(104, 72);
             this.cbCustomer.Margin = new System.Windows.Forms.Padding(2);
             this.cbCustomer.Name = "cbCustomer";
             this.cbCustomer.Size = new System.Drawing.Size(151, 21);
-            this.cbCustomer.TabIndex = 20;
+            this.cbCustomer.TabIndex = 2;
             // 
             // label1
             // 
@@ -168,12 +170,13 @@
             // 
             // cbRoom
             // 
+            this.cbRoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRoom.FormattingEnabled = true;
             this.cbRoom.Location = new System.Drawing.Point(104, 38);
             this.cbRoom.Margin = new System.Windows.Forms.Padding(2);
             this.cbRoom.Name = "cbRoom";
             this.cbRoom.Size = new System.Drawing.Size(151, 21);
-            this.cbRoom.TabIndex = 20;
+            this.cbRoom.TabIndex = 1;
             // 
             // dateBegin
             // 
@@ -181,7 +184,7 @@
             this.dateBegin.Margin = new System.Windows.Forms.Padding(2);
             this.dateBegin.Name = "dateBegin";
             this.dateBegin.Size = new System.Drawing.Size(151, 20);
-            this.dateBegin.TabIndex = 23;
+            this.dateBegin.TabIndex = 4;
             // 
             // label4
             // 
@@ -199,17 +202,20 @@
             this.tbDeposit.MaxLength = 18;
             this.tbDeposit.Name = "tbDeposit";
             this.tbDeposit.Size = new System.Drawing.Size(151, 20);
-            this.tbDeposit.TabIndex = 37;
+            this.tbDeposit.TabIndex = 5;
+            this.tbDeposit.Text = "0";
+            this.tbDeposit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbDeposit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbDeposit_KeyPress);
             // 
             // cbStatusRoomBook
             // 
+            this.cbStatusRoomBook.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatusRoomBook.FormattingEnabled = true;
             this.cbStatusRoomBook.Location = new System.Drawing.Point(104, 108);
             this.cbStatusRoomBook.Margin = new System.Windows.Forms.Padding(2);
             this.cbStatusRoomBook.Name = "cbStatusRoomBook";
             this.cbStatusRoomBook.Size = new System.Drawing.Size(151, 21);
-            this.cbStatusRoomBook.TabIndex = 20;
+            this.cbStatusRoomBook.TabIndex = 3;
             // 
             // label5
             // 
@@ -221,11 +227,22 @@
             this.label5.TabIndex = 29;
             this.label5.Text = "Status";
             // 
+            // btAddCustomer
+            // 
+            this.btAddCustomer.Location = new System.Drawing.Point(271, 71);
+            this.btAddCustomer.Name = "btAddCustomer";
+            this.btAddCustomer.Size = new System.Drawing.Size(34, 23);
+            this.btAddCustomer.TabIndex = 38;
+            this.btAddCustomer.Text = "+";
+            this.btAddCustomer.UseVisualStyleBackColor = true;
+            this.btAddCustomer.Click += new System.EventHandler(this.btAddCustomer_Click);
+            // 
             // RoomBookEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(508, 252);
+            this.Controls.Add(this.btAddCustomer);
             this.Controls.Add(this.tbDeposit);
             this.Controls.Add(this.tbID);
             this.Controls.Add(this.btSave);
@@ -244,7 +261,10 @@
             this.Controls.Add(this.cbRoom);
             this.Controls.Add(this.cbCustomer);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RoomBookEdit";
             this.Text = "RoomBook Edit";
             this.Load += new System.EventHandler(this.RoomBookEdit_Load);
@@ -273,5 +293,6 @@
         private System.Windows.Forms.TextBox tbDeposit;
         private System.Windows.Forms.ComboBox cbStatusRoomBook;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btAddCustomer;
     }
 }
